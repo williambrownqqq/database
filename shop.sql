@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS Shop;
-CREATE DATABASE Shop;
-USE Shop;
+DROP DATABASE IF EXISTS SHOP;
+CREATE DATABASE SHOP;
+USE SHOP;
 CREATE TABLE Manufacturer(
     ManufacturerID INT PRIMARY KEY,
     Brand  CHAR(20),
@@ -73,5 +73,10 @@ INSERT INTO Customer (Firstname, Surname, Patronymic, Birthday, Passsword, Email
 UPDATE Customer
 	SET Email = CONCAT(Firstname, Email)
     WHERE Customerid < 3;
+
 SELECT * FROM Customer;
-DROP DATABASE IF EXISTS Shop;
+DO SLEEP(3);
+DELETE FROM Customer 
+WHERE Firstname = "Illia";
+SELECT * FROM Customer;
+DROP DATABASE IF EXISTS SHOP;
