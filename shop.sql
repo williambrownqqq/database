@@ -27,15 +27,14 @@ CREATE TABLE Delivery(
 );
 
 CREATE TABLE Customer(
-    CustomerID INT PRIMARY KEY,
+    CustomerID INT PRIMARY KEY AUTO_INCREMENT,
     Firstname CHAR(50),
     Surname CHAR(50),
     Patronymic CHAR(50),
-    Email CHAR(100),
     Birthday CHAR(50),
     Passsword CHAR(50),
-    PhoneNumber CHAR(50)
-
+    Email CHAR(100) UNIQUE,
+    PhoneNumber CHAR(50) UNIQUE
 );
 CREATE TABLE Ordering(
     OrderingID INT PRIMARY KEY,
@@ -67,5 +66,9 @@ ALTER TABLE Basket
 ADD FOREIGN KEY (OrderID) REFERENCES Ordering(OrderingID),
 ADD FOREIGN KEY (ProductID) REFERENCES Product(ProductID);
 
-
+INSERT INTO Customer (Firstname, Surname, Patronymic, Birthday, Passsword, Email, PhoneNumber) 
+ VALUES ("Сидоров", "Ілля", "Петрович", "01.01.2003", "A>/*fE6\3QNsh{GR", "Illia@gmail.com",  +380234557849),
+("lesha", "zanchenko", "dmitrievich", "01.01.2000","qwertyuiop", "mail@gmail.com", +380445657849),
+("lesha", "dudkin", "batkovich", "01.01.2001","qwerty123", "gmail@gmail.com", +380444557849);
+SELECT * FROM Customer;
 DROP DATABASE IF EXISTS Shop;
