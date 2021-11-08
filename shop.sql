@@ -61,11 +61,3 @@ CREATE TABLE Basket(
 );
 SHOW TABLES;
 SHOW TABLES;
-hellloooooooooooooo
-hellloooooooooooooo
-hellloooooooooooooo
-DROP DATABASE IF EXISTS SHOP;
-
-hellloooooooooooooo
-hellloooooooooooooo
-hellloooooooooooooo
