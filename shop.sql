@@ -67,9 +67,9 @@ ADD FOREIGN KEY (OrderID) REFERENCES Ordering(OrderingID),
 ADD FOREIGN KEY (ProductID) REFERENCES Product(ProductID);
 
 INSERT INTO Customer (Firstname, Surname, Patronymic, Birthday, Passsword, Email, PhoneNumber) 
- VALUES ("Сидоров", "Ілля", "Петрович", "01.01.2003", "A>/*fE6\3QNsh{GR", "Illia@gmail.com",  +380234557849),
-("lesha", "zanchenko", "dmitrievich", "01.01.2000","qwertyuiop", "mail@gmail.com", +380445657849),
-("lesha", "dudkin", "batkovich", "01.01.2001","qwerty123", "gmail@gmail.com", +380444557849);
+ VALUES ("Сидоров", "Ілля", "Петрович", "01.01.2003", "A>/*fE6\3QNsh{GR", "Illia@gmail.com",  "+380234557849"),
+("lesha", "zanchenko", "dmitrievich", "01.01.2000","qwertyuiop", "mail@gmail.com", "+380445657849"),
+("lesha", "dudkin", "batkovich", "01.01.2001","qwerty123", "gmail@gmail.com", "+380444557849");
 
 SELECT * FROM Customer;
 DROP DATABASE IF EXISTS Shop;
