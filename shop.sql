@@ -57,7 +57,7 @@ CREATE TABLE Basket(
     PRIMARY KEY(OrderID, ProductID)
 );
 
---alter table
+-- alter table
 ALTER TABLE Product
 ADD FOREIGN KEY (ManufacturerID) REFERENCES Manufacturer(ManufacturerID);
 ALTER TABLE Delivery
@@ -67,7 +67,7 @@ ADD FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID);
 ALTER TABLE Basket
 ADD FOREIGN KEY (OrderID) REFERENCES Ordering(OrderingID),
 ADD FOREIGN KEY (ProductID) REFERENCES Product(ProductID);
---insert
+-- insert
 INSERT INTO Customer (Firstname, Surname, Patronymic, Birthday, Passsword, Email, PhoneNumber) 
  VALUES ("Illia", "Сидоров", "Петрович", "01.01.2003", "A>/*fE6\3QNsh{GR", "@gmail.com",  "+380234557849"),
 ("lesha", "zanchenko", "dmitrievich", "01.01.2000","qwertyuiop", "mail@gmail.com", "+380445657849"),
@@ -79,7 +79,7 @@ UPDATE Customer
     WHERE Customerid < 3;
 SELECT * FROM Customer;
 
---delete
+-- delete
 DO SLEEP(3);
 DELETE FROM Customer 
 WHERE Firstname = "Illia";
