@@ -57,7 +57,10 @@ CREATE TABLE TypeProduct(
 CREATE TABLE Basket(
     OrderID INT,
     ProductID INT,
-    Amount INT
+    Amount INT,
+    PRIMARY KEY(OrderID, ProductID),
+    FOREIGN KEY (OrderID) REFERENCES Ordering(OrderingID),
+    FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
 );
 alter table Basket
 	add primary key (OrderID, ProductID);
