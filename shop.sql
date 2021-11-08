@@ -60,6 +60,12 @@ CREATE TABLE Basket(
     Amount INT
 );
 SHOW TABLES;
+SHOW TABLES;
+hellloooooooooooooo
+hellloooooooooooooo
+hellloooooooooooooo
 DROP DATABASE IF EXISTS SHOP;
-hello1234
-howdoyoudo
+
+hellloooooooooooooo
+hellloooooooooooooo
+hellloooooooooooooo
