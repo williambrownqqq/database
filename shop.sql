@@ -1,5 +1,6 @@
-CREATE DATABASE IF NOT EXISTS SHOP;
-USE SHOP;
+DROP DATABASE IF EXISTS Shop;
+CREATE DATABASE Shop;
+USE Shop;
 CREATE TABLE Manufacturer(
     ManufacturerID INT PRIMARY KEY,
     Brand  CHAR(20),
@@ -12,29 +13,34 @@ CREATE TABLE Product(
     Amount INT,
     ProductName CHAR(20),
     DescribeProduct VARCHAR(2000),
+	WaitringTime INT,
     Photo VARCHAR(20),
+<<<<<<< HEAD
     WaitringTime INT,
     ManufacturerID INT,
     CountryManufacturer CHAR(20),
     Seller CHAR(20),
     FOREIGN KEY (ManufacturerID) REFERENCES Manufacturer(ManufacturerID)
+=======
+    ManufacturerID INT,
+    Seller CHAR(20)
+>>>>>>> 55b61e39c3575967d1b58862353f30704ba5388d
 );
 CREATE TABLE Delivery(
     DeliveryID INT PRIMARY KEY,
-    DATEE CHAR(20),
+    Term CHAR(20),
     ProductID INT,
     Amount INT,
-    Dealer CHAR(20),
-    FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
+    Dealer CHAR(20)
 );
 
 CREATE TABLE Customer(
     CustomerID INT PRIMARY KEY,
-    Namee CHAR(50),
+    Firstname CHAR(50),
     Surname CHAR(50),
     Patronymic CHAR(50),
     Email CHAR(100),
-    birthday CHAR(50),
+    Birthday CHAR(50),
     Passsword CHAR(50),
     PhoneNumber CHAR(50)
 
@@ -42,12 +48,11 @@ CREATE TABLE Customer(
 CREATE TABLE Ordering(
     OrderingID INT PRIMARY KEY,
     CustomerID INT,
-    Dating CHAR(10),
+    Term CHAR(10),
     TotalSum INT,
     TypeDelivery CHAR(10),
-    Addresss VARCHAR(30),
-    PaymentType VARCHAR(10),
-    FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID)
+    ADDresss VARCHAR(30),
+    PaymentType VARCHAR(10)
 );
 CREATE TABLE TypeProduct(
     CategoryID INT PRIMARY KEY,
@@ -58,11 +63,25 @@ CREATE TABLE Basket(
     OrderID INT,
     ProductID INT,
     Amount INT,
+<<<<<<< HEAD
     PRIMARY KEY(OrderID, ProductID),
     FOREIGN KEY (OrderID) REFERENCES Ordering(OrderingID),
     FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
 );
 alter table Basket
 	add primary key (OrderID, ProductID);
+=======
+    PRIMARY KEY(OrderID, ProductID)
+);
+ALTER TABLE Product
+ADD FOREIGN KEY (ManufacturerID) REFERENCES Manufacturer(ManufacturerID);
+ALTER TABLE Delivery
+ADD FOREIGN KEY (ProductID) REFERENCES Product(ProductID);
+ALTER TABLE Ordering
+ADD FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID);
+ALTER TABLE Basket
+ADD FOREIGN KEY (OrderID) REFERENCES Ordering(OrderingID),
+ADD FOREIGN KEY (ProductID) REFERENCES Product(ProductID);
+>>>>>>> 55b61e39c3575967d1b58862353f30704ba5388d
 SHOW TABLES;
-DROP DATABASE IF EXISTS SHOP;
+DROP DATABASE IF EXISTS Shop;
