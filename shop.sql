@@ -14,10 +14,10 @@ CREATE TABLE Product(
     DescribeProduct VARCHAR(2000),
     Photo VARCHAR(20),
     WaitringTime INT,
-    ManufacturerrrID INT,
+    ManufacturerID INT,
     CountryManufacturer CHAR(20),
     Seller CHAR(20),
-    FOREIGN KEY (ManufacturerrrID) REFERENCES Manufacturer(ManufacturerID)
+    FOREIGN KEY (ManufacturerID) REFERENCES Manufacturer(ManufacturerID)
 );
 CREATE TABLE Delivery(
     DeliveryID INT PRIMARY KEY,
@@ -59,8 +59,10 @@ CREATE TABLE Basket(
     ProductID INT,
     Amount INT,
     PRIMARY KEY(OrderID, ProductID),
-    FOREIGN KEY (OrderID) REFERENCES Ordering(OrderingID)
+    FOREIGN KEY (OrderID) REFERENCES Ordering(OrderingID),
     FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
 );
+alter table Basket
+	add primary key (OrderID, ProductID);
 SHOW TABLES;
 DROP DATABASE IF EXISTS SHOP;
