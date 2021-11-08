@@ -33,8 +33,8 @@ CREATE TABLE Customer(
     Patronymic CHAR(50),
     Email CHAR(100),
     Birthday CHAR(50),
-    Passsword CHAR(50),
-    PhoneNumber CHAR(50)
+    Passsword CHAR(50) UNIQUE,
+    PhoneNumber CHAR(50) UNIQUE
 
 );
 CREATE TABLE Ordering(
@@ -67,5 +67,9 @@ ALTER TABLE Basket
 ADD FOREIGN KEY (OrderID) REFERENCES Ordering(OrderingID),
 ADD FOREIGN KEY (ProductID) REFERENCES Product(ProductID);
 
-
+INSERT INTO Customer(CustomerID, Firstname, Surname, Patronymic, Birthday, Passsword, Email, PhoneNumber)
+    VALUES(123, "lesha", "zanchenko", "dmitrievich", "01.01.2000","qwertyuiop", "mail@gmail.com", "12345678"),
+    (124, "lesha", "dudkin", "batkovich", "01.01.2001","qwerty123", "gmail@gmail.com", "12346789");
+   
+SELECT * FROM Customer;
 DROP DATABASE IF EXISTS Shop;
