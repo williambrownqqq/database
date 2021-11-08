@@ -59,29 +59,3 @@ CREATE TABLE TypeProduct(
     NameOfProduct CHAR(30),
     Category VARCHAR(15)
 );
-CREATE TABLE Basket(
-    OrderID INT,
-    ProductID INT,
-    Amount INT,
-<<<<<<< HEAD
-    PRIMARY KEY(OrderID, ProductID),
-    FOREIGN KEY (OrderID) REFERENCES Ordering(OrderingID),
-    FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
-);
-alter table Basket
-	add primary key (OrderID, ProductID);
-=======
-    PRIMARY KEY(OrderID, ProductID)
-);
-ALTER TABLE Product
-ADD FOREIGN KEY (ManufacturerID) REFERENCES Manufacturer(ManufacturerID);
-ALTER TABLE Delivery
-ADD FOREIGN KEY (ProductID) REFERENCES Product(ProductID);
-ALTER TABLE Ordering
-ADD FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID);
-ALTER TABLE Basket
-ADD FOREIGN KEY (OrderID) REFERENCES Ordering(OrderingID),
-ADD FOREIGN KEY (ProductID) REFERENCES Product(ProductID);
->>>>>>> 55b61e39c3575967d1b58862353f30704ba5388d
-SHOW TABLES;
-DROP DATABASE IF EXISTS Shop;
