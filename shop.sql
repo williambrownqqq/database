@@ -32,15 +32,9 @@ CREATE TABLE Customer(
     Surname CHAR(50),
     Patronymic CHAR(50),
     Birthday CHAR(50),
-<<<<<<< HEAD
-    Passsword CHAR(50) UNIQUE,
-    PhoneNumber CHAR(50) UNIQUE
-
-=======
     Passsword CHAR(50),
     Email CHAR(100) UNIQUE,
     PhoneNumber CHAR(50) UNIQUE
->>>>>>> 41fa9c88732600dfca1f1d0df48d1d601590b6ed
 );
 CREATE TABLE Ordering(
     OrderingID INT PRIMARY KEY,
@@ -72,16 +66,10 @@ ALTER TABLE Basket
 ADD FOREIGN KEY (OrderID) REFERENCES Ordering(OrderingID),
 ADD FOREIGN KEY (ProductID) REFERENCES Product(ProductID);
 
-<<<<<<< HEAD
-INSERT INTO Customer(CustomerID, Firstname, Surname, Patronymic, Birthday, Passsword, Email, PhoneNumber)
-    VALUES(123, "lesha", "zanchenko", "dmitrievich", "01.01.2000","qwertyuiop", "mail@gmail.com", "12345678"),
-    (124, "lesha", "dudkin", "batkovich", "01.01.2001","qwerty123", "gmail@gmail.com", "12346789");
-   
-=======
 INSERT INTO Customer (Firstname, Surname, Patronymic, Birthday, Passsword, Email, PhoneNumber) 
  VALUES ("Сидоров", "Ілля", "Петрович", "01.01.2003", "A>/*fE6\3QNsh{GR", "Illia@gmail.com",  +380234557849),
 ("lesha", "zanchenko", "dmitrievich", "01.01.2000","qwertyuiop", "mail@gmail.com", +380445657849),
 ("lesha", "dudkin", "batkovich", "01.01.2001","qwerty123", "gmail@gmail.com", +380444557849);
->>>>>>> 41fa9c88732600dfca1f1d0df48d1d601590b6ed
+
 SELECT * FROM Customer;
 DROP DATABASE IF EXISTS Shop;
