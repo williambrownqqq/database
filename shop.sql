@@ -2,21 +2,21 @@ DROP DATABASE IF EXISTS SHOP;
 CREATE DATABASE SHOP;
 USE SHOP;
 CREATE TABLE Manufacturer(
-    ManufacturerID INT PRIMARY KEY,
-    Brand  CHAR(20),
-    Country CHAR(20)
+    ManufacturerID INT PRIMARY KEY NOT NULL,
+    Brand  CHAR(20) NOT NULL,
+    Country CHAR(20) NOT NULL
 );
 CREATE TABLE Product(
-    ProductID INT PRIMARY KEY,
-    CategoryID INT,
-    Price Float,
-    Amount INT,
-    ProductName CHAR(20),
-    DescribeProduct VARCHAR(2000),
-	WaitringTime INT,
-    Photo VARCHAR(20),
-    ManufacturerID INT,
-    Seller CHAR(20)
+    ProductID INT PRIMARY KEY NOT NULL,
+    CategoryID INT NOT NULL,
+    Price Float NOT NULL CHECK (Price > 0),
+    Amount INT NOT NULL,
+    ProductName CHAR(20) NOT NULL,
+    DescribeProduct VARCHAR(2000) NULL,
+	WaitringTime INT NOT NULL,
+    Photo VARCHAR(20) NOT NULL,
+    ManufacturerID INT NOT NULL,
+    Seller CHAR(20) NOT NULL
 );
 CREATE TABLE Delivery(
     DeliveryID INT PRIMARY KEY,
@@ -67,6 +67,7 @@ ADD FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID);
 ALTER TABLE Basket
 ADD FOREIGN KEY (OrderID) REFERENCES Ordering(OrderingID),
 ADD FOREIGN KEY (ProductID) REFERENCES Product(ProductID);
+
 -- insert
 INSERT INTO Customer (Firstname, Surname, Patronymic, Birthday, Passsword, Email, PhoneNumber) 
  VALUES ("Illia", "Сидоров", "Петрович", "01.01.2003", "A>/*fE6\3QNsh{GR", "@gmail.com",  "+380234557849"),
