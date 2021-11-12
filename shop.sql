@@ -2,27 +2,25 @@ DROP DATABASE IF EXISTS SHOP;
 CREATE DATABASE SHOP;
 USE SHOP;
 CREATE TABLE Manufacturer(
-    ManufacturerID INT PRIMARY KEY,
+    ManufacturerID INT PRIMARY KEY AUTO_INCREMENT,
     Brand  CHAR(20) NULL,
     Country CHAR(20) NULL
 );
 CREATE TABLE Product(
-    ProductID INT PRIMARY KEY,
-    CategoryID INT NOT NULL,
+    ProductID INT PRIMARY KEY AUTO_INCREMENT,
+    CategoryID INT  NOT NULL,
     Price Float NOT NULL CHECK (Price > 0),
     Amount INT NOT NULL,
     ProductName CHAR(20) NOT NULL,
     DescribeProduct VARCHAR(2000) NULL,
-    WaitringTime INT NOT NULL,
-    -- Photo VARCHAR(20) NOT NULL,
+	WaitingTime INT NOT NULL,
     ManufacturerID INT NOT NULL,
     Seller CHAR(20) NOT NULL
 );
 CREATE TABLE Delivery(
-    DeliveryID INT PRIMARY KEY AUTO_INCREMENT,
+    DeliveryID INT PRIMARY KEY,
     Term CHAR(20) NOT NULL,
     ProductID INT NOT NULL,
-    Amount INT NOT NULL,
     Dealer CHAR(20) NULL
 );
 
@@ -33,7 +31,7 @@ CREATE TABLE Customer(
     Patronymic CHAR(50) NOT NULL,
     Birthday CHAR(50) NOT NULL,
     Passsword CHAR(50) UNIQUE NOT NULL,
-    Email CHAR(100) UNIQUE NOT NULL CHECK(Email!=''),
+    Email CHAR(100) UNIQUE NOT NULL CHECK(Email LIKE '%@gmail.com'),
     PhoneNumber CHAR(50) UNIQUE NOT NULL CHECK(PhoneNumber!='')
     -- CHECK(Email != NULL OR PhoneNumber != NULL)
 );
@@ -48,7 +46,6 @@ CREATE TABLE Ordering(
 );
 CREATE TABLE TypeProduct(
     CategoryID INT PRIMARY KEY AUTO_INCREMENT,
-    NameOfProduct CHAR(30) NOT NULL,
     Category VARCHAR(15) NOT NULL
 );
 CREATE TABLE Basket(
@@ -57,7 +54,6 @@ CREATE TABLE Basket(
     Amount INT NOT NULL,
     PRIMARY KEY(OrderID, ProductID)  
 );
-
 
 -- alter table  
 ALTER TABLE Product
@@ -72,30 +68,34 @@ ADD FOREIGN KEY (OrderID) REFERENCES Ordering(OrderingID),
 ADD FOREIGN KEY (ProductID) REFERENCES Product(ProductID);
 
 -- insert
-INSERT INTO Customer (Firstname, Surname, Patronymic, Birthday, Passsword, Email, PhoneNumber) 
- VALUES ("Illia", "Сидоров", "Петрович", "01.01.2003", "A>/*fE6\3QNsh{GR", "@gmail.com",  "+380234557849"),
-("lesha", "zanchenko", "dmitrievich", "01.01.2000","qwertyuiop", "mail@gmail.com", "+380445657849"),
-("lesha", "dudkin", "batkovich", "01.01.2001","qwerty123", "gmail@gmail.com", "+380444557849");
-
 INSERT INTO Manufacturer(ManufacturerID, Brand, Country)
-VALUES (7878, "lamborghini", "Ukraine");
-
-INSERT INTO TypeProduct(CategoryID, NameOfProduct, Category)
-VALUES (012346, "Audi", "Car");
-
-INSERT INTO Product(ProductID, CategoryID, Price, Amount, ProductName, DescribeProduct, WaitringTime, ManufacturerID, Seller) 
-VALUES(543,012346, 111.4, 2,"yaht", "lamborghini", 60, 7878, "lamborghini");
-
-INSERT INTO Ordering(OrderingID, CustomerID, Term, TotalSum, TypeDelivery, ADDresss, PaymentType)
-VALUES (999, 1, 10, 100, "NovaPoshta", "kyiv", "cash");
-
+	VALUES (6894, "BELTGUYS", "Ukraine"),
+    (3456, "Smoby", "USA"),
+    (7878, "Lamborghini", "Italy");
+INSERT INTO Customer (Firstname, Surname, Patronymic, Birthday, Passsword, Email, PhoneNumber) 
+	VALUES ("Lesha", "Dudkin", "Nikolaevich", "10.04.2003","qwerty123", "alisha@gmail.com", "+380849730945"),
+    ("Lesha", "Zanchenko", "Dmitrievich", "25.03.2002","9sdfygo9sdf", "zanlesh@gmail.com", "+380444557849"),
+    ("Jeka", "Zakharchuk", "Nikolaevich", "05.04.2001","q;sodgjlidhgl8", "zheniazk@gmail.com", "+3802342343423");
+INSERT INTO TypeProduct(CategoryID, Category)
+	VALUES (234566, "Stationery"),
+    (345890, "Toy"),
+    (012346, "Car");
+INSERT INTO Product(ProductID, CategoryID, Price, Amount, ProductName, DescribeProduct, WaitingTime, ManufacturerID, Seller) 
+	VALUES (198,012346, 33.4, 150,"Folder", "Gray folder for a gray job",5, 7878 , "Serozha"),
+    (234,345890, 10.50, 60,"Ball", "Small ball for children",10, 3456 , "Sashka"),
+    (543,012346, 111.4, 5,"Lamborgini", "luxury car",60, 7878 , "Evgenii");
+INSERT INTO Ordering(CustomerID, Term, TotalSum, TypeDelivery, ADDresss, PaymentType)
+	VALUES (1, 10, 100, "NovaPoshta", "kyiv", "cash"),
+    (2, 15, 60, "NovaPoshta", "kyiv", "cash"),
+    (3, 18, 200, "UkrPoshta", "kyiv", "cash");
+INSERT INTO Delivery(DeliveryID, Term, ProductID, Dealer)
+	VALUES (243, "term", 198, "GMC"),
+    (898, "term", 234, "GMC"),
+    (777, "term", 543, "GMC");
 INSERT INTO Basket(OrderID, ProductID, Amount)
-VALUES (999, 543, 1);
-
-INSERT INTO Delivery(DeliveryID, Term, ProductID, Amount, Dealer)
-VALUES (777, "term", 543, 1, "GMC");
-
-
+	VALUES (1, 198, 1),
+    (2, 234, 1),
+    (3, 543, 1);
 
 -- update
 UPDATE Customer
@@ -104,19 +104,10 @@ UPDATE Customer
 SELECT * FROM Customer;
 
 -- delete
--- DO SLEEP(3);
--- DELETE FROM Customer 
--- WHERE Firstname = "Illia";
--- SELECT * FROM Customer;
-
--- SELECT * FROM Product WHERE Price > 100;
-
-SELECT * FROM Product WHERE Seller = "lamborghini" AND Price > 100;
-
-SELECT ProductName FROM Product WHERE ProductName Like "yaht%" ;
-
-SELECT * FROM Product
-ORDER BY Price;
+DO SLEEP(3);
+DELETE FROM Customer 
+WHERE Firstname = "Illia";
+SELECT * FROM Customer;
 
 DROP DATABASE IF EXISTS SHOP;
 
