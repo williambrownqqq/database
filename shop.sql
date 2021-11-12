@@ -7,14 +7,14 @@ CREATE TABLE Manufacturer(
     Country CHAR(20) NULL
 );
 CREATE TABLE Product(
-    ProductID INT PRIMARY KEY AUTO_INCREMENT,
+    ProductID INT PRIMARY KEY,
     CategoryID INT NOT NULL,
     Price Float NOT NULL CHECK (Price > 0),
     Amount INT NOT NULL,
     ProductName CHAR(20) NOT NULL,
     DescribeProduct VARCHAR(2000) NULL,
-  WaitringTime INT NOT NULL,
-    Photo VARCHAR(20) NOT NULL,
+    WaitringTime INT NOT NULL,
+    -- Photo VARCHAR(20) NOT NULL,
     ManufacturerID INT NOT NULL,
     Seller CHAR(20) NOT NULL
 );
@@ -58,9 +58,11 @@ CREATE TABLE Basket(
     PRIMARY KEY(OrderID, ProductID)  
 );
 
+
 -- alter table  
 ALTER TABLE Product
-ADD FOREIGN KEY (ManufacturerID) REFERENCES Manufacturer(ManufacturerID);
+ADD FOREIGN KEY (ManufacturerID) REFERENCES Manufacturer(ManufacturerID),
+ADD FOREIGN KEY (CategoryID) REFERENCES TypeProduct(CategoryID);
 ALTER TABLE Delivery
 ADD FOREIGN KEY (ProductID) REFERENCES Product(ProductID);
 ALTER TABLE Ordering
@@ -75,6 +77,26 @@ INSERT INTO Customer (Firstname, Surname, Patronymic, Birthday, Passsword, Email
 ("lesha", "zanchenko", "dmitrievich", "01.01.2000","qwertyuiop", "mail@gmail.com", "+380445657849"),
 ("lesha", "dudkin", "batkovich", "01.01.2001","qwerty123", "gmail@gmail.com", "+380444557849");
 
+INSERT INTO Manufacturer(ManufacturerID, Brand, Country)
+VALUES (7878, "lamborghini", "Ukraine");
+
+INSERT INTO TypeProduct(CategoryID, NameOfProduct, Category)
+VALUES (012346, "Audi", "Car");
+
+INSERT INTO Product(ProductID, CategoryID, Price, Amount, ProductName, DescribeProduct, WaitringTime, ManufacturerID, Seller) 
+VALUES(543,012346, 111.4, 2,"yaht", "lamborghini", 60, 7878, "lamborghini");
+
+INSERT INTO Ordering(OrderingID, CustomerID, Term, TotalSum, TypeDelivery, ADDresss, PaymentType)
+VALUES (999, 1, 10, 100, "NovaPoshta", "kyiv", "cash");
+
+INSERT INTO Basket(OrderID, ProductID, Amount)
+VALUES (999, 543, 1);
+
+INSERT INTO Delivery(DeliveryID, Term, ProductID, Amount, Dealer)
+VALUES (777, "term", 543, 1, "GMC");
+
+
+
 -- update
 UPDATE Customer
   SET Email = CONCAT(Firstname, Email)
@@ -82,11 +104,19 @@ UPDATE Customer
 SELECT * FROM Customer;
 
 -- delete
-DO SLEEP(3);
-DELETE FROM Customer 
-WHERE Firstname = "Illia";
-SELECT * FROM Customer;
+-- DO SLEEP(3);
+-- DELETE FROM Customer 
+-- WHERE Firstname = "Illia";
+-- SELECT * FROM Customer;
 
+-- SELECT * FROM Product WHERE Price > 100;
+
+SELECT * FROM Product WHERE Seller = "lamborghini" AND Price > 100;
+
+SELECT ProductName FROM Product WHERE ProductName Like "yaht%" ;
+
+SELECT * FROM Product
+ORDER BY Price;
 
 DROP DATABASE IF EXISTS SHOP;
 
