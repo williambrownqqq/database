@@ -2,59 +2,60 @@ DROP DATABASE IF EXISTS SHOP;
 CREATE DATABASE SHOP;
 USE SHOP;
 CREATE TABLE Manufacturer(
-    ManufacturerID INT PRIMARY KEY NOT NULL,
-    Brand  CHAR(20) NOT NULL,
-    Country CHAR(20) NOT NULL
+    ManufacturerID INT PRIMARY KEY AUTO_INCREMENT,
+    Brand  CHAR(20) NULL,
+    Country CHAR(20) NULL
 );
 CREATE TABLE Product(
-    ProductID INT PRIMARY KEY NOT NULL,
-    CategoryID INT NOT NULL,
-    Price Float NOT NULL CHECK (Price > 0),
+    ProductID INT PRIMARY KEY AUTO_INCREMENT,
+    CategoryID INT  NOT NULL,
+    Price Float NOT NULL CHECK (Price < 0),
     Amount INT NOT NULL,
     ProductName CHAR(20) NOT NULL,
     DescribeProduct VARCHAR(2000) NULL,
-	WaitringTime INT NOT NULL,
+  WaitringTime INT NOT NULL,
     Photo VARCHAR(20) NOT NULL,
     ManufacturerID INT NOT NULL,
     Seller CHAR(20) NOT NULL
 );
 CREATE TABLE Delivery(
-    DeliveryID INT PRIMARY KEY,
-    Term CHAR(20),
-    ProductID INT,
-    Amount INT,
-    Dealer CHAR(20)
+    DeliveryID INT PRIMARY KEY AUTO_INCREMENT,
+    Term CHAR(20) NOT NULL,
+    ProductID INT NOT NULL,
+    Amount INT NOT NULL,
+    Dealer CHAR(20) NULL
 );
 
 CREATE TABLE Customer(
-    CustomerID INT PRIMARY KEY AUTO_INCREMENT,
-    Firstname CHAR(50),
-    Surname CHAR(50),
-    Patronymic CHAR(50),
-    Birthday CHAR(50),
-    Passsword CHAR(50),
-    Email CHAR(100) UNIQUE,
-    PhoneNumber CHAR(50) UNIQUE
+    CustomerID INT AUTO_INCREMENT PRIMARY KEY,
+    Firstname CHAR(50) NOT NULL,
+    Surname CHAR(50) NOT NULL,
+    Patronymic CHAR(50) NOT NULL,
+    Birthday CHAR(50) NOT NULL,
+    Passsword CHAR(50) UNIQUE NOT NULL,
+    Email CHAR(100) UNIQUE NOT NULL CHECK(Email !=''),
+    PhoneNumber CHAR(50) UNIQUE NOT NULL CHECK(PhoneNumber!='')
+    -- CHECK(Email != NULL OR PhoneNumber != NULL)
 );
 CREATE TABLE Ordering(
-    OrderingID INT PRIMARY KEY,
+    OrderingID INT PRIMARY KEY AUTO_INCREMENT,
     CustomerID INT,
-    Term CHAR(10),
-    TotalSum INT,
-    TypeDelivery CHAR(10),
-    ADDresss VARCHAR(30),
-    PaymentType VARCHAR(10)
+    Term CHAR(10) NOT NULL,
+    TotalSum INT NOT NULL,
+    TypeDelivery CHAR(10) NOT NULL,
+    ADDresss VARCHAR(30) NOT NULL,
+    PaymentType VARCHAR(10) NOT NULL
 );
 CREATE TABLE TypeProduct(
-    CategoryID INT PRIMARY KEY,
-    NameOfProduct CHAR(30),
-    Category VARCHAR(15)
+    CategoryID INT PRIMARY KEY AUTO_INCREMENT,
+    NameOfProduct CHAR(30) NOT NULL,
+    Category VARCHAR(15) NOT NULL
 );
 CREATE TABLE Basket(
-    OrderID INT,
-    ProductID INT,
-    Amount INT,
-    PRIMARY KEY(OrderID, ProductID)
+    OrderID INT UNIQUE NOT NULL,
+    ProductID INT NOT NULL,
+    Amount INT NOT NULL,
+    PRIMARY KEY(OrderID, ProductID)  
 );
 
 -- alter table
@@ -76,7 +77,7 @@ INSERT INTO Customer (Firstname, Surname, Patronymic, Birthday, Passsword, Email
 
 -- update
 UPDATE Customer
-	SET Email = CONCAT(Firstname, Email)
+  SET Email = CONCAT(Firstname, Email)
     WHERE Customerid < 3;
 SELECT * FROM Customer;
 
