@@ -81,9 +81,9 @@ INSERT INTO TypeProduct(CategoryID, Category)
     (345890, "Toy"),
     (012346, "Car");
 INSERT INTO Product(ProductID, CategoryID, Price, Amount, ProductName, DescribeProduct, WaitingTime, ManufacturerID, Seller) 
-	VALUES (198,012346, 33.4, 150,"Folder", "Gray folder for a gray job",5, 7878 , "Serozha"),
-    (234,345890, 10.50, 60,"Ball", "Small ball for children",10, 3456 , "Sashka"),
-    (543,012346, 111.4, 5,"Lamborgini", "luxury car",60, 7878 , "Evgenii");
+	VALUES (198,012346, 33.4, 150,"Ball", "Ball for Basketball",5, 7878 , "Serozha"),
+    (234,345890, 1011.50, 60,"Ball", "Ball for football",10, 3456 , "Serozha"),
+    (543,012346, 111.4, 5,"Lamborgini", "luxury car",60, 7878 , "Serozha");
 INSERT INTO Ordering(CustomerID, Term, TotalSum, TypeDelivery, ADDresss, PaymentType)
 	VALUES (1, 10, 100, "NovaPoshta", "kyiv", "cash"),
     (2, 15, 60, "NovaPoshta", "kyiv", "cash"),
@@ -108,6 +108,14 @@ DO SLEEP(3);
 DELETE FROM Customer 
 WHERE Firstname = "Illia";
 SELECT * FROM Customer;
+
+SELECT * FROM Product WHERE Seller = "Serozha" AND Amount < 100;
+DO SLEEP(3);
+SELECT ProductName, DescribeProduct FROM Product WHERE ProductName Like "Ball%" ;
+DO SLEEP(3);
+SELECT * FROM Product
+ORDER BY Price;
+
 
 DROP DATABASE IF EXISTS SHOP;
 
