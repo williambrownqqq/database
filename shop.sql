@@ -3,6 +3,7 @@ CREATE DATABASE SHOP;
 USE SHOP;
 CREATE TABLE Manufacturer(
     ManufacturerID INT PRIMARY KEY AUTO_INCREMENT,
+    ManufacturerID INT PRIMARY KEY,
     Brand  CHAR(20) NULL,
     Country CHAR(20) NULL
 );
@@ -10,10 +11,12 @@ CREATE TABLE Product(
     ProductID INT PRIMARY KEY AUTO_INCREMENT,
     CategoryID INT  NOT NULL,
     Price Float NOT NULL CHECK (Price < 0),
+    CategoryID INT NOT NULL,
+    Price Float NOT NULL CHECK (Price > 0),
     Amount INT NOT NULL,
     ProductName CHAR(20) NOT NULL,
     DescribeProduct VARCHAR(2000) NULL,
-  WaitringTime INT NOT NULL,
+	WaitringTime INT NOT NULL,
     Photo VARCHAR(20) NOT NULL,
     ManufacturerID INT NOT NULL,
     Seller CHAR(20) NOT NULL
@@ -34,6 +37,7 @@ CREATE TABLE Customer(
     Birthday CHAR(50) NOT NULL,
     Passsword CHAR(50) UNIQUE NOT NULL,
     Email CHAR(100) UNIQUE NOT NULL CHECK(Email !=''),
+    Email CHAR(100) UNIQUE NOT NULL CHECK(Email!=''),
     PhoneNumber CHAR(50) UNIQUE NOT NULL CHECK(PhoneNumber!='')
     -- CHECK(Email != NULL OR PhoneNumber != NULL)
 );
@@ -58,7 +62,7 @@ CREATE TABLE Basket(
     PRIMARY KEY(OrderID, ProductID)  
 );
 
--- alter table
+-- alter table  
 ALTER TABLE Product
 ADD FOREIGN KEY (ManufacturerID) REFERENCES Manufacturer(ManufacturerID);
 ALTER TABLE Delivery
@@ -89,3 +93,4 @@ SELECT * FROM Customer;
 
 
 DROP DATABASE IF EXISTS SHOP;
+
