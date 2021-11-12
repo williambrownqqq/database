@@ -9,7 +9,7 @@ CREATE TABLE Manufacturer(
 CREATE TABLE Product(
     ProductID INT PRIMARY KEY AUTO_INCREMENT,
     CategoryID INT NOT NULL,
-    Price Float NOT NULL CHECK (Price < 0),
+    Price Float NOT NULL CHECK (Price > 0),
     Amount INT NOT NULL,
     ProductName CHAR(20) NOT NULL,
     DescribeProduct VARCHAR(2000) NULL,
