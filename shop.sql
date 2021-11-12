@@ -115,7 +115,7 @@ SELECT ProductName, DescribeProduct FROM Product WHERE ProductName Like "Ball%" 
 DO SLEEP(3);
 SELECT * FROM Product
 ORDER BY Price;
-
+DO SLEEP(3);
 
 DROP DATABASE IF EXISTS SHOP;
 
