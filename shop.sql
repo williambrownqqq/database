@@ -1,41 +1,40 @@
 DROP DATABASE IF EXISTS SHOP;
 CREATE DATABASE SHOP;
 USE SHOP;
-CREATE TABLE Manufacturer(
+CREATE TABLE Manufacturer (
     ManufacturerID INT PRIMARY KEY AUTO_INCREMENT,
-    Brand  CHAR(20) NULL,
+    Brand CHAR(20) NULL,
     Country CHAR(20) NULL
 );
-CREATE TABLE Product(
+CREATE TABLE Product (
     ProductID INT PRIMARY KEY AUTO_INCREMENT,
-    CategoryID INT  NOT NULL,
-    Price Float NOT NULL CHECK (Price > 0),
+    CategoryID INT NOT NULL,
+    Price FLOAT NOT NULL CHECK (Price > 0),
     Amount INT NOT NULL,
     ProductName CHAR(20) NOT NULL,
     DescribeProduct VARCHAR(2000) NULL,
-	WaitingTime INT NOT NULL,
+    WaitingTime INT NOT NULL,
     ManufacturerID INT NOT NULL,
     Seller CHAR(20) NOT NULL
 );
-CREATE TABLE Delivery(
+CREATE TABLE Delivery (
     DeliveryID INT PRIMARY KEY,
     Term CHAR(20) NOT NULL,
     ProductID INT NOT NULL,
     Dealer CHAR(20) NULL
 );
 
-CREATE TABLE Customer(
+CREATE TABLE Customer (
     CustomerID INT AUTO_INCREMENT PRIMARY KEY,
     Firstname CHAR(50) NOT NULL,
     Surname CHAR(50) NOT NULL,
     Patronymic CHAR(50) NOT NULL,
     Birthday CHAR(50) NOT NULL,
     Passsword CHAR(50) UNIQUE NOT NULL,
-    Email CHAR(100) UNIQUE NOT NULL CHECK(Email LIKE '%@gmail.com'),
-    PhoneNumber CHAR(50) UNIQUE NOT NULL CHECK(PhoneNumber!='')
-    -- CHECK(Email != NULL OR PhoneNumber != NULL)
+    Email CHAR(100) UNIQUE NOT NULL CHECK (Email LIKE '%@gmail.com'),
+    PhoneNumber CHAR(50) UNIQUE NOT NULL CHECK (PhoneNumber != '')
 );
-CREATE TABLE Ordering(
+CREATE TABLE Ordering (
     OrderingID INT PRIMARY KEY AUTO_INCREMENT,
     CustomerID INT,
     Term CHAR(10) NOT NULL,
@@ -44,15 +43,15 @@ CREATE TABLE Ordering(
     ADDresss VARCHAR(30) NOT NULL,
     PaymentType VARCHAR(10) NOT NULL
 );
-CREATE TABLE TypeProduct(
+CREATE TABLE TypeProduct (
     CategoryID INT PRIMARY KEY AUTO_INCREMENT,
     Category VARCHAR(15) NOT NULL
 );
-CREATE TABLE Basket(
+CREATE TABLE Basket (
     OrderID INT UNIQUE NOT NULL,
     ProductID INT NOT NULL,
     Amount INT NOT NULL,
-    PRIMARY KEY(OrderID, ProductID)  
+    PRIMARY KEY (OrderID , ProductID)
 );
 
 -- alter table  
@@ -75,7 +74,9 @@ INSERT INTO Manufacturer(ManufacturerID, Brand, Country)
 INSERT INTO Customer (Firstname, Surname, Patronymic, Birthday, Passsword, Email, PhoneNumber) 
 	VALUES ("Lesha", "Dudkin", "Nikolaevich", "10.04.2003","qwerty123", "alisha@gmail.com", "+380849730945"),
     ("Lesha", "Zanchenko", "Dmitrievich", "25.03.2002","9sdfygo9sdf", "zanlesh@gmail.com", "+380444557849"),
-    ("Jeka", "Zakharchuk", "Nikolaevich", "05.04.2001","q;sodgjlidhgl8", "zheniazk@gmail.com", "+3802342343423");
+    ("Jeka", "Zakharchuk", "Nikolaevich", "05.04.2001","q;sodgdfggl8", "zheniazk@gmail.com", "+3802342343423"),
+     ("Andrey", "NeDudkin", "Nikolaevich", "05.04.2023","q;sodsdfhhgl8", "andrey@gmail.com", "+38234523"),
+      ("NeAndrey", "NeZanchenko", "Nikolaevich", "05.04.1900","q;sodadsfidhgl8", "neandreyk@gmail.com", "+38568956783423");
 INSERT INTO TypeProduct(CategoryID, Category)
 	VALUES (234566, "Stationery"),
     (345890, "Toy"),
@@ -98,66 +99,124 @@ INSERT INTO Basket(OrderID, ProductID, Amount)
     (3, 543, 1);
 
 -- update
-UPDATE Customer
-  SET Email = CONCAT(Firstname, Email)
-    WHERE Customerid < 3;
-SELECT * FROM Customer;
+UPDATE Customer 
+SET 
+    Email = CONCAT(Firstname, Email)
+WHERE
+    Customerid < 3;
+SELECT 
+    *
+FROM
+    Customer;
 
 -- delete
 -- DO SLEEP(1);
 DELETE FROM Customer 
-WHERE Firstname = "Illia";
-SELECT * FROM Customer;
+WHERE
+    Firstname = 'Illia';
+SELECT 
+    *
+FROM
+    Customer;
 
-SELECT * FROM Product WHERE Seller = "Serozha" AND Amount < 100;
+SELECT 
+    *
+FROM
+    Product
+WHERE
+    Seller = 'Serozha' AND Amount < 100;
 -- DO SLEEP(1);
-SELECT ProductName, DescribeProduct FROM Product WHERE ProductName Like "Ball%" ;
+SELECT 
+    ProductName, DescribeProduct
+FROM
+    Product
+WHERE
+    ProductName LIKE 'Ball%';
 -- DO SLEEP(1);
-SELECT * FROM Product
+SELECT 
+    *
+FROM
+    Product
 ORDER BY Price;
 -- DO SLEEP(1);
 
-SELECT DISTINCT * FROM Product;
-SELECT * FROM Product LIMIT 2;
+SELECT DISTINCT
+    *
+FROM
+    Product;
+SELECT 
+    *
+FROM
+    Product
+LIMIT 2;
 -- DO SLEEP(1);
 
-SELECT *
-FROM Product
-INNER JOIN Basket
-ON Product.ProductID = Basket.ProductID;
+SELECT 
+    *
+FROM
+    Product
+        INNER JOIN
+    Basket ON Product.ProductID = Basket.ProductID;
 -- DO SLEEP(1);
 
--- agr func
-SELECT COUNT(ProductName) FROM Product;
+SELECT 
+    COUNT(ProductName)
+FROM
+    Product;
 
 -- DO SLEEP(1);
-SELECT MAX(Amount) FROM Product;
+SELECT 
+    MAX(Amount)
+FROM
+    Product;
 
 
-SELECT MIN(Amount) FROM Product
-UNION
-SELECT AVG(Amount) FROM Product;
+SELECT 
+    MIN(Amount)
+FROM
+    Product 
+UNION SELECT 
+    AVG(Amount)
+FROM
+    Product;
 
 -- DO SLEEP(5);
-SELECT SUM(Amount) FROM Product;
+SELECT 
+    SUM(Amount)
+FROM
+    Product;
 
 -- DO SLEEP(1);
-SELECT ProductName, COUNT(*)
-FROM Product
+SELECT 
+    ProductName, COUNT(*)
+FROM
+    Product
 GROUP BY ProductName;
 
 -- DO SLEEP(1);
-SELECT Country, COUNT(*) AS Производитель
-FROM Manufacturer
+SELECT 
+    Country, COUNT(*) AS Производитель
+FROM
+    Manufacturer
 GROUP BY Country
-Having COUNT(*) > 1;
+HAVING COUNT(*) > 1;
 
 SELECT CustomerID, Firstname,
 CASE 
     WHEN Firstname="Lesha" THEN "leha"
     WHEN Firstname="Jeka" THEN "jenya"
-END AS nickname
+END as prikol
 FROM Customer;
+
+SELECT  *,
+CASE 
+    WHEN Firstname="Lesha" THEN "должен сотку"
+    WHEN Firstname="Jeka" THEN "должен 200"
+    WHEN Firstname="Andrey" THEN "должен "
+    WHEN Firstname="NeAndrey" THEN "не должен"
+END as деньги
+FROM CUSTOMER
+ORDER BY CustomerID; 
 
 SELECT CustomerID, Firstname,
  IF(Firstname = "Lesha", "leha", "neleha")
