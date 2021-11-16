@@ -152,12 +152,16 @@ FROM Manufacturer
 GROUP BY Country
 Having COUNT(*) > 1;
 
--- SELECT CustomerID, Firstname,
--- CASE 
---     WHEN Firstname="Lesha" THEN "leha",
---     WHEN Firstname="Jeka" THEN "jenya",
--- END
--- FROM Customer;
+SELECT CustomerID, Firstname,
+CASE 
+    WHEN Firstname="Lesha" THEN "leha"
+    WHEN Firstname="Jeka" THEN "jenya"
+END AS nickname
+FROM Customer;
 
+SELECT CustomerID, Firstname,
+ IF(Firstname = "Lesha", "leha", "neleha")
+ AS nickname
+FROM Customer;
 DROP DATABASE IF EXISTS SHOP;
 
