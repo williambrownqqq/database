@@ -71,7 +71,7 @@ ADD FOREIGN KEY (ProductID) REFERENCES Product(ProductID);
 INSERT INTO Manufacturer(ManufacturerID, Brand, Country)
 	VALUES (6894, "BELTGUYS", "Ukraine"),
     (3456, "Smoby", "USA"),
-    (7878, "Lamborghini", "Italy");
+    (7878, "Lamborghini", "USA");
 INSERT INTO Customer (Firstname, Surname, Patronymic, Birthday, Passsword, Email, PhoneNumber) 
 	VALUES ("Lesha", "Dudkin", "Nikolaevich", "10.04.2003","qwerty123", "alisha@gmail.com", "+380849730945"),
     ("Lesha", "Zanchenko", "Dmitrievich", "25.03.2002","9sdfygo9sdf", "zanlesh@gmail.com", "+380444557849"),
@@ -104,27 +104,60 @@ UPDATE Customer
 SELECT * FROM Customer;
 
 -- delete
-DO SLEEP(3);
+-- DO SLEEP(1);
 DELETE FROM Customer 
 WHERE Firstname = "Illia";
 SELECT * FROM Customer;
 
 SELECT * FROM Product WHERE Seller = "Serozha" AND Amount < 100;
-DO SLEEP(1);
+-- DO SLEEP(1);
 SELECT ProductName, DescribeProduct FROM Product WHERE ProductName Like "Ball%" ;
-DO SLEEP(1);
+-- DO SLEEP(1);
 SELECT * FROM Product
 ORDER BY Price;
-DO SLEEP(1);
+-- DO SLEEP(1);
 
 SELECT DISTINCT * FROM Product;
 SELECT * FROM Product LIMIT 2;
-DO SLEEP(3);
+-- DO SLEEP(1);
 
 SELECT *
 FROM Product
 INNER JOIN Basket
 ON Product.ProductID = Basket.ProductID;
+-- DO SLEEP(1);
+
+-- agr func
+SELECT COUNT(ProductName) FROM Product;
+
+-- DO SLEEP(1);
+SELECT MAX(Amount) FROM Product;
+
+
+SELECT MIN(Amount) FROM Product
+UNION
+SELECT AVG(Amount) FROM Product;
+
+-- DO SLEEP(5);
+SELECT SUM(Amount) FROM Product;
+
+-- DO SLEEP(1);
+SELECT ProductName, COUNT(*)
+FROM Product
+GROUP BY ProductName;
+
+-- DO SLEEP(1);
+SELECT Country, COUNT(*) AS Производитель
+FROM Manufacturer
+GROUP BY Country
+Having COUNT(*) > 1;
+
+-- SELECT CustomerID, Firstname,
+-- CASE 
+--     WHEN Firstname="Lesha" THEN "leha",
+--     WHEN Firstname="Jeka" THEN "jenya",
+-- END
+-- FROM Customer;
 
 DROP DATABASE IF EXISTS SHOP;
 
