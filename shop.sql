@@ -99,113 +99,65 @@ INSERT INTO Basket(OrderID, ProductID, Amount)
     (3, 543, 1);
 
 -- update
-UPDATE Customer 
-SET 
-    Email = CONCAT(Firstname, Email)
-WHERE
-    Customerid < 3;
-SELECT 
-    *
-FROM
-    Customer;
+UPDATE Customer
+  SET Email = CONCAT(Firstname, Email)
+    WHERE Customerid < 3;
+SELECT * FROM Customer;
 
 -- delete
 -- DO SLEEP(1);
 DELETE FROM Customer 
-WHERE
-    Firstname = 'Illia';
-SELECT 
-    *
-FROM
-    Customer;
+WHERE Firstname = "Illia";
+SELECT * FROM Customer;
 
-SELECT 
-    *
-FROM
-    Product
-WHERE
-    Seller = 'Serozha' AND Amount < 100;
+SELECT * FROM Product WHERE Seller = "Serozha" AND Amount < 100;
 -- DO SLEEP(1);
-SELECT 
-    ProductName, DescribeProduct
-FROM
-    Product
-WHERE
-    ProductName LIKE 'Ball%';
+SELECT ProductName, DescribeProduct FROM Product WHERE ProductName Like "Ball%" ;
 -- DO SLEEP(1);
-SELECT 
-    *
-FROM
-    Product
+SELECT * FROM Product
 ORDER BY Price;
 -- DO SLEEP(1);
 
-SELECT DISTINCT
-    *
-FROM
-    Product;
-SELECT 
-    *
-FROM
-    Product
-LIMIT 2;
+SELECT DISTINCT * FROM Product;
+SELECT * FROM Product LIMIT 2;
 -- DO SLEEP(1);
 
-SELECT 
-    *
-FROM
-    Product
-        INNER JOIN
-    Basket ON Product.ProductID = Basket.ProductID;
+SELECT *
+FROM Product
+INNER JOIN Basket
+ON Product.ProductID = Basket.ProductID;
 -- DO SLEEP(1);
 
-SELECT 
-    COUNT(ProductName)
-FROM
-    Product;
+-- agr func
+SELECT COUNT(ProductName) FROM Product;
 
 -- DO SLEEP(1);
-SELECT 
-    MAX(Amount)
-FROM
-    Product;
+SELECT MAX(Amount) FROM Product;
 
 
-SELECT 
-    MIN(Amount)
-FROM
-    Product 
-UNION SELECT 
-    AVG(Amount)
-FROM
-    Product;
+SELECT MIN(Amount) FROM Product
+UNION
+SELECT AVG(Amount) FROM Product;
 
 -- DO SLEEP(5);
-SELECT 
-    SUM(Amount)
-FROM
-    Product;
+SELECT SUM(Amount) FROM Product;
 
 -- DO SLEEP(1);
-SELECT 
-    ProductName, COUNT(*)
-FROM
-    Product
+SELECT ProductName, COUNT(*)
+FROM Product
 GROUP BY ProductName;
 
 -- DO SLEEP(1);
-SELECT 
-    Country, COUNT(*) AS Производитель
-FROM
-    Manufacturer
+SELECT Country, COUNT(*) AS Производитель
+FROM Manufacturer
 GROUP BY Country
-HAVING COUNT(*) > 1;
+Having COUNT(*) > 1;
 
 SELECT CustomerID, Firstname,
 CASE 
     WHEN Firstname="Lesha" THEN "leha"
     WHEN Firstname="Jeka" THEN "jenya"
-END as prikol
+END AS nickname
 FROM Customer;
 
 SELECT  *,
