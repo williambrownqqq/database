@@ -133,57 +133,31 @@ ON Product.ProductID = Basket.ProductID;
 
 -- *************************************Lab5*************************************
 -- agr func
-SELECT COUNT(ProductName) FROM Product;
+-- SELECT COUNT(ProductName) FROM Product;
 
--- DO SLEEP(1);
-SELECT MAX(Amount) FROM Product;
+-- -- DO SLEEP(1);
+-- SELECT MAX(Amount) FROM Product;
 
 
-SELECT MIN(Amount) FROM Product
-UNION
-SELECT AVG(Amount) FROM Product;
+-- SELECT MIN(Amount) FROM Product
+-- UNION
+-- SELECT AVG(Amount) FROM Product;
 
--- DO SLEEP(5);
-SELECT SUM(Amount) FROM Product;
+-- -- DO SLEEP(5);
+-- SELECT SUM(Amount) FROM Product;
 
--- DO SLEEP(1);
-SELECT ProductName, COUNT(*)
-FROM Product
-GROUP BY ProductName;
+-- -- DO SLEEP(1);
+-- SELECT ProductName, COUNT(*)
+-- FROM Product
+-- GROUP BY ProductName;
 
--- DO SLEEP(1);
-SELECT Country, COUNT(*) AS Производитель
-FROM Manufacturer
-GROUP BY Country
-Having COUNT(*) > 1;
+-- -- DO SLEEP(1);
+-- SELECT Country, COUNT(*) AS Производитель
+-- FROM Manufacturer
+-- GROUP BY Country
+-- Having COUNT(*) > 1;
 
 -- *************************************Lab6**************************************
-SELECT CustomerID, Firstname,
-CASE 
-    WHEN Firstname="Lesha" THEN "leha"
-    WHEN Firstname="Jeka" THEN "jenya"
-END AS nickname
-FROM Customer;
 
-SELECT  *,
-CASE 
-    WHEN Firstname="Lesha" THEN "должен сотку"
-    WHEN Firstname="Jeka" THEN "должен 200"
-    WHEN Firstname="Andrey" THEN "должен "
-    WHEN Firstname="NeAndrey" THEN "не должен"
-END as деньги
-FROM CUSTOMER
-ORDER BY CustomerID; 
 
-SELECT CustomerID, Firstname,
- IF(Firstname = "Lesha", "leha", "neleha")
- AS nickname
-FROM Customer;
-
-SELECT ManufacturerID, Brand, Count(*) as CountCountry
-FROM Manufacturer 
-GROUP BY Country;
-
-DROP DATABASE IF EXISTS SHOP;
-
-123
+-- DROP DATABASE IF EXISTS SHOP;
