@@ -72,7 +72,8 @@ ADD FOREIGN KEY (ProductID) REFERENCES Product(ProductID);
 INSERT INTO Manufacturer(ManufacturerID, Brand, Country)
 	VALUES (6894, "BELTGUYS", "Ukraine"),
     (3456, "Smoby", "USA"),
-    (7878, "Lamborghini", "USA");
+    (7878, "Lamborghini", "USA"),
+    (6659, "Xiaomi", "China");
 INSERT INTO Customer (Firstname, Surname, Patronymic, Birthday, Passsword, Email, PhoneNumber) 
 	VALUES ("Lesha", "Dudkin", "Nikolaevich", "10.04.2003","qwerty123", "alisha@gmail.com", "+380849730945"),
     ("Lesha", "Zanchenko", "Dmitrievich", "25.03.2002","9sdfygo9sdf", "zanlesh@gmail.com", "+380444557849"),
