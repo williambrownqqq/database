@@ -157,7 +157,7 @@ FROM Manufacturer
 GROUP BY Country
 Having COUNT(*) > 1;
 
--- *************************************Lab6*************************************
+-- *************************************Lab6**************************************
 SELECT CustomerID, Firstname,
 CASE 
     WHEN Firstname="Lesha" THEN "leha"
