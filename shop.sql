@@ -1,3 +1,4 @@
+-- *************************************Lab2*************************************
 DROP DATABASE IF EXISTS SHOP;
 CREATE DATABASE SHOP;
 USE SHOP;
@@ -66,6 +67,7 @@ ALTER TABLE Basket
 ADD FOREIGN KEY (OrderID) REFERENCES Ordering(OrderingID),
 ADD FOREIGN KEY (ProductID) REFERENCES Product(ProductID);
 
+-- *************************************Lab3*************************************
 -- insert
 INSERT INTO Manufacturer(ManufacturerID, Brand, Country)
 	VALUES (6894, "BELTGUYS", "Ukraine"),
@@ -110,6 +112,7 @@ DELETE FROM Customer
 WHERE Firstname = "Illia";
 SELECT * FROM Customer;
 
+-- *************************************Lab4*************************************
 SELECT * FROM Product WHERE Seller = "Serozha" AND Amount < 100;
 -- DO SLEEP(1);
 SELECT ProductName, DescribeProduct FROM Product WHERE ProductName Like "Ball%" ;
@@ -128,6 +131,7 @@ INNER JOIN Basket
 ON Product.ProductID = Basket.ProductID;
 -- DO SLEEP(1);
 
+-- *************************************Lab5*************************************
 -- agr func
 SELECT COUNT(ProductName) FROM Product;
 
@@ -153,6 +157,7 @@ FROM Manufacturer
 GROUP BY Country
 Having COUNT(*) > 1;
 
+-- *************************************Lab6*************************************
 SELECT CustomerID, Firstname,
 CASE 
     WHEN Firstname="Lesha" THEN "leha"
@@ -174,5 +179,10 @@ SELECT CustomerID, Firstname,
  IF(Firstname = "Lesha", "leha", "neleha")
  AS nickname
 FROM Customer;
+
+SELECT ManufacturerID, Brand, Count(*) as CountCountry
+FROM Manufacturer 
+GROUP BY Country;
+
 DROP DATABASE IF EXISTS SHOP;
 
