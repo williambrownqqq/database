@@ -163,4 +163,3 @@ FROM Manufacturer
 GROUP BY Country;
 
 -- DROP DATABASE IF EXISTS SHOP;
-
