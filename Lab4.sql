@@ -15,3 +15,9 @@ FROM Product
 INNER JOIN Basket
 ON Product.ProductID = Basket.ProductID;
 -- DO SLEEP(1);
+
+SELECT *
+FROM Product
+Union 
+Select *
+from Basket
