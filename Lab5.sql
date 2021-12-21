@@ -1,4 +1,4 @@
--- Агрегатные функции без GROUP BY
+-- Агрегатные функции без  GROUP BY
 SELECT  COUNT(ProductName) AS Количество_продуктов, MAX(Amount) AS минимум, MIN(Amount) AS максимум, AVG(Amount) AS среднее, SUM(Amount) AS сумма FROM Product;
 DO SLEEP(4);
 
@@ -12,10 +12,10 @@ GROUP BY Firstname;
 
 DO SLEEP(3);
 SELECT Customer.CustomerID, Customer.Firstname, Ordering.TotalSum FROM Customer, Ordering
-WHERE Customer.CustomerID = Ordering.CustomerID
+
 GROUP BY CustomerID; 
 
-DO SLEEP(2);
+DO SLEEP(5);
 SELECT ProductName, COUNT(ProductName), MAX(Amount), MIN(Amount), AVG(Amount), SUM(Amount) AS Сумма_цен FROM Product
 GROUP BY ProductName;
 
@@ -30,7 +30,7 @@ Having COUNT(*) > 1;
 
 
 -- Разница между DISTINCT и Group by (окромя того что второе еще и групирует) заключается в том, 
--- что первое уберает дубликаты касательно того что мы выбрали: если после DISTINCT использовать *, 
+-- что первое убирает дубликаты касательно того что мы выбрали: если после DISTINCT использовать *, 
 -- то будут убраны только сплошные дубликаты (тоесть все поля у них должны быть одинаковые)
 DO SLEEP(5);
 SELECT  DISTINCT *

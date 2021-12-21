@@ -29,7 +29,7 @@ WHERE Product.ProductID > 2;
 -- 4
 
 DELETE FROM Delivery
- WHERE ProductID = SOME(SELECT ProductID 
+ WHERE ProductID = (SELECT ProductID 
 						   FROM Product
 						  WHERE CategoryID = (SELECT CategoryID FROM TypeProduct WHERE Category = "Toy"));
                           
@@ -46,3 +46,4 @@ UPDATE Product
 					WHERE Category = "Car");
                     
 SELECT * FROM Product;
+                    

@@ -1,7 +1,7 @@
 -- *************************************Lab2*************************************
-DROP DATABASE IF EXISTS SHOP;
-CREATE DATABASE SHOP;
-USE SHOP;
+DROP DATABASE IF EXISTS testbd1;
+CREATE DATABASE testbd1;
+USE testbd1;
 CREATE TABLE Manufacturer (
     ManufacturerID INT PRIMARY KEY AUTO_INCREMENT,
     Brand CHAR(20) NULL,
@@ -51,8 +51,7 @@ CREATE TABLE TypeProduct (
 CREATE TABLE Basket (
     OrderID INT UNIQUE NOT NULL,
     ProductID INT NOT NULL,
-    Amount INT NOT NULL,
-    PRIMARY KEY (OrderID , ProductID)
+    Amount INT NOT NULL
 );
 
 -- alter table  
@@ -69,97 +68,95 @@ ADD FOREIGN KEY (ProductID) REFERENCES Product(ProductID);
 
 -- *************************************Lab3*************************************
 -- insert
-INSERT INTO Manufacturer(ManufacturerID, Brand, Country)
-	VALUES (6894, "BELTGUYS", "Ukraine"),
-    (3456, "Smoby", "USA"),
-    (7878, "Lamborghini", "USA"),
-    (6659, "Xiaomi", "China");
-INSERT INTO Customer (Firstname, Surname, Patronymic, Birthday, Passsword, Email, PhoneNumber) 
-	VALUES ("Lesha", "Dudkin", "Nikolaevich", "10.04.2003","qwerty123", "alisha@gmail.com", "+380849730945"),
-    ("Lesha", "Zanchenko", "Dmitrievich", "25.03.2002","9sdfygo9sdf", "zanlesh@gmail.com", "+380444557849"),
-    ("Jeka", "Zakharchuk", "Nikolaevich", "05.04.2001","q;sodgdfggl8", "zheniazk@gmail.com", "+3802342343423"),
-     ("Andrey", "NeDudkin", "Nikolaevich", "05.04.2023","q;sodsdfhhgl8", "andrey@gmail.com", "+38234523"),
-      ("Illia", "NeIllia", "Illiavich", "05.04.1900","q;sodadsfidhgl8", "Illiak@gmail.com", "+38568956783423");
-INSERT INTO TypeProduct(CategoryID, Category)
-	VALUES (234566, "Stationery"),
-    (345890, "Toy"),
-    (012346, "Car");
-INSERT INTO Product(ProductID, CategoryID, Price, Amount, ProductName, DescribeProduct, WaitingTime, ManufacturerID, Seller) 
-	VALUES (198,012346, 33.4, 150,"Ball", "Ball for Basketball",5, 7878 , "Serozha"),
-    (234,345890, 1011.50, 60,"Ball", "Ball for football",10, 3456 , "NeSerozha"),
-    (543,012346, 111.4, 5,"Lamborgini", "luxury car",60, 7878 , "VozmozhnoSerozha");
-INSERT INTO Ordering(CustomerID, Term, TotalSum, TypeDelivery, ADDresss, PaymentType)
-	VALUES (1, 10, 100, "NovaPoshta", "kyiv", "cash"),
-    (2, 15, 60, "NovaPoshta", "kyiv", "cash"),
-    (3, 18, 200, "UkrPoshta", "kyiv", "cash");
-INSERT INTO Delivery(DeliveryID, Term, ProductID, Dealer)
-	VALUES (243, "term", 198, "GMC"),
-    (898, "term", 234, "GMC"),
-    (777, "term", 543, "GMC");
-INSERT INTO Basket(OrderID, ProductID, Amount)
-	VALUES (1, 198, 1),
-    (2, 234, 1),
-    (3, 543, 1);
+-- INSERT INTO Manufacturer(ManufacturerID, Brand, Country)
+-- 	VALUES (6894, "BELTGUYS", "Ukraine"),
+--     (3456, "Smoby", "USA"),
+--     (7878, "Lamborghini", "USA");
+-- INSERT INTO Customer (Firstname, Surname, Patronymic, Birthday, Passsword, Email, PhoneNumber) 
+-- 	VALUES ("Lesha", "Dudkin", "Nikolaevich", "10.04.2003","qwerty123", "alisha@gmail.com", "+380849730945"),
+--     ("Lesha", "Zanchenko", "Dmitrievich", "25.03.2002","9sdfygo9sdf", "zanlesh@gmail.com", "+380444557849"),
+--     ("Jeka", "Zakharchuk", "Nikolaevich", "05.04.2001","q;sodgdfggl8", "zheniazk@gmail.com", "+3802342343423"),
+--      ("Andrey", "NeDudkin", "Nikolaevich", "05.04.2023","q;sodsdfhhgl8", "andrey@gmail.com", "+38234523"),
+--       ("NeAndrey", "NeZanchenko", "Nikolaevich", "05.04.1900","q;sodadsfidhgl8", "neandreyk@gmail.com", "+38568956783423");
+-- INSERT INTO TypeProduct(CategoryID, Category)
+-- 	VALUES (234566, "Stationery"),
+--     (345890, "Toy"),
+--     (012346, "Car");
+-- INSERT INTO Product(ProductID, CategoryID, Price, Amount, ProductName, DescribeProduct, WaitingTime, ManufacturerID, Seller) 
+-- 	VALUES (198,012346, 33.4, 150,"Ball", "Ball for Basketball",5, 7878 , "Serozha"),
+--     (234,345890, 1011.50, 60,"Ball", "Ball for football",10, 3456 , "Serozha"),
+--     (543,012346, 111.4, 5,"Lamborgini", "luxury car",60, 7878 , "Serozha");
+-- INSERT INTO Ordering(CustomerID, Term, TotalSum, TypeDelivery, ADDresss, PaymentType)
+-- 	VALUES (1, 10, 100, "NovaPoshta", "kyiv", "cash"),
+--     (2, 15, 60, "NovaPoshta", "kyiv", "cash"),
+--     (3, 18, 200, "UkrPoshta", "kyiv", "cash");
+-- INSERT INTO Delivery(DeliveryID, Term, ProductID, Dealer)
+-- 	VALUES (243, "term", 198, "GMC"),
+--     (898, "term", 234, "GMC"),
+--     (777, "term", 543, "GMC");
+-- INSERT INTO Basket(OrderID, ProductID, Amount)
+-- 	VALUES (1, 198, 1),
+--     (2, 234, 1),
+--     (3, 543, 1);
 
--- update
-UPDATE Customer
-  SET Email = CONCAT(Firstname, Email)
-    WHERE Customerid < 3;
-SELECT * FROM Customer;
+-- -- update
+-- UPDATE Customer
+--   SET Email = CONCAT(Firstname, Email)
+--     WHERE Customerid < 3;
+-- SELECT * FROM Customer;
 
--- delete
--- DO SLEEP(1);
-DELETE FROM Customer 
-WHERE Firstname = "Illia";
-SELECT * FROM Customer;
+-- -- delete
+-- -- DO SLEEP(1);
+-- DELETE FROM Customer 
+-- WHERE Firstname = "Illia";
+-- SELECT * FROM Customer;
 
 -- *************************************Lab4*************************************
-SELECT * FROM Product WHERE Seller = "Serozha" AND Amount < 100;
--- DO SLEEP(1);
-SELECT ProductName, DescribeProduct FROM Product WHERE ProductName Like "Ball%" ;
--- DO SLEEP(1);
-SELECT * FROM Product
-ORDER BY Price;
--- DO SLEEP(1);
+-- SELECT * FROM Product WHERE Seller = "Serozha" AND Amount < 100;
+-- -- DO SLEEP(1);
+-- SELECT ProductName, DescribeProduct FROM Product WHERE ProductName Like "Ball%" ;
+-- -- DO SLEEP(1);
+-- SELECT * FROM Product
+-- ORDER BY Price;
+-- -- DO SLEEP(1);
 
-SELECT DISTINCT * FROM Product;
-SELECT * FROM Product LIMIT 2;
--- DO SLEEP(1);
+-- SELECT DISTINCT * FROM Product;
+-- SELECT * FROM Product LIMIT 2;
+-- -- DO SLEEP(1);
 
-SELECT *
-FROM Product
-INNER JOIN Basket
-ON Product.ProductID = Basket.ProductID;
--- DO SLEEP(1);
+-- SELECT *
+-- FROM Product
+-- INNER JOIN Basket
+-- ON Product.ProductID = Basket.ProductID;
+-- -- DO SLEEP(1);
 
 -- *************************************Lab5*************************************
--- в файле
+-- agr func
+-- SELECT COUNT(ProductName) FROM Product;
 
--- *************************************Lab6*************************************
-SELECT CustomerID, Firstname,
-CASE 
-    WHEN Firstname="Lesha" THEN "leha"
-    WHEN Firstname="Jeka" THEN "jenya"
-END AS nickname
-FROM Customer;
+-- -- DO SLEEP(1);
+-- SELECT MAX(Amount) FROM Product;
 
-SELECT  *,
-CASE 
-    WHEN Firstname="Lesha" THEN "должен сотку"
-    WHEN Firstname="Jeka" THEN "должен 200"
-    WHEN Firstname="Andrey" THEN "должен "
-    WHEN Firstname="NeAndrey" THEN "не должен"
-END as деньги
-FROM CUSTOMER
-ORDER BY CustomerID; 
 
-SELECT CustomerID, Firstname,
- IF(Firstname = "Lesha", "leha", "neleha")
- AS nickname
-FROM Customer;
+-- SELECT MIN(Amount) FROM Product
+-- UNION
+-- SELECT AVG(Amount) FROM Product; 
 
-SELECT ManufacturerID, Brand, Count(*) as CountCountry
-FROM Manufacturer 
-GROUP BY Country;
+-- -- DO SLEEP(5);
+-- SELECT SUM(Amount) FROM Product;
+
+-- -- DO SLEEP(1);
+-- SELECT ProductName, COUNT(*)
+-- FROM Product
+-- GROUP BY ProductName;
+
+-- -- DO SLEEP(1);
+-- SELECT Country, COUNT(*) AS Производитель
+-- FROM Manufacturer
+-- GROUP BY Country
+-- Having COUNT(*) > 1;
+
+-- *************************************Lab6**************************************
+
 
 -- DROP DATABASE IF EXISTS SHOP;

@@ -7,7 +7,7 @@ SELECT ADDresss, TypeDelivery, PaymentType
   FROM Ordering
  ORDER BY 1;
 
- INSERT INTO Product(ProductID, CategoryID, Price, Amount, ProductName, DescribeProduct, WaitingTime, ManufacturerID, Seller) 
+ INSERT INTO Product(ProductName, CategoryID, Price, Amount, ProductName, DescribeProduct, WaitingTime, ManufacturerID, Seller) 
     VALUES (199,012346, 800, 150,"Ball", "Ball for Basketball",5, 7878 , "Serozha"),
     (224,345890, 90, 60,"Ball", "Ball for football",10, 3456 , "Serozha"),
     (555,012346, 555, 5,"Lamborgini", "luxury car",60, 7878 , "Serozha");
